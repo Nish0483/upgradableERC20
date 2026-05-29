@@ -6,6 +6,8 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
+/// @title ERC20v1
+/// @notice UUPS-upgradeable ERC20 with owner-controlled minting.
 contract ERC20v1 is
     Initializable,
     ERC20Upgradeable,
@@ -17,7 +19,8 @@ contract ERC20v1 is
         _disableInitializers();
     }
 
-    // initilizer
+    /// @notice Initializes the token and mints 1M tokens to `initialOwner`.
+    /// @param initialOwner Recipient of the initial supply and contract owner.
     function initialize(address initialOwner) public initializer {
         __ERC20_init("MyToken", "MTK");
         __Ownable_init(initialOwner);
@@ -26,12 +29,14 @@ contract ERC20v1 is
         _mint(initialOwner, 1000000 * 10 ** decimals());
     }
 
-    // virtual modifier is needed for any function or states if we need to upgrade that in version 2
+    /// @notice Mints new tokens to `to`. Overridable in upgraded implementations.
+    /// @param to Address receiving the minted tokens.
+    /// @param amount Number of tokens to mint (18 decimals).
     function mint(address to, uint256 amount) external virtual onlyOwner {
         _mint(to, amount);
     }
 
-    // Mandatory override function required by UUPS 
+    /// UUPSUpgradeable override function
     function _authorizeUpgrade(
         address newImplementation
     ) internal override onlyOwner {}
