@@ -140,9 +140,31 @@ npx hardhat run scripts/deployAndUpgrade.js --network sepolia
    - Calls `upgrades.upgradeProxy` to point the same proxy at `ERC20v2`.  
    - Prints the new **implementation** address (proxy address unchanged).
 
+### Sepolia deployment
 
+Contracts were deployed on **Sepolia** (chain ID `11155111`) with `npm run deploy-sepolia`. Use the **proxy** address for the frontend and all user interactions; it stays the same after upgrades.
 
+| Contract | Address |
+|----------|---------|
+| **Proxy** (ERC20 token) | [`0x7CAbF9CA3a38D1e8282ce68c3f52208d8fbe04A9`](https://sepolia.etherscan.io/address/0x7CAbF9CA3a38D1e8282ce68c3f52208d8fbe04A9) |
+| **Implementation (V2)** — current logic | [`0xbe667d721769d86b07e39F188c3733B6949eDc75`](https://sepolia.etherscan.io/address/0xbe667d721769d86b07e39F188c3733B6949eDc75) |
+| **Implementation (V1)** — replaced at upgrade | [`0xb3dBD6941De4f06Ee3694E88f9F61c17EA942530`](https://sepolia.etherscan.io/address/0xb3dBD6941De4f06Ee3694E88f9F61c17EA942530) |
 
+The React app is already configured with this proxy in `frontend/src/App.js`. After a **new** deploy, update `CONTRACT_ADDRESS` there and add the new addresses to this table.
+
+Example script output:
+
+```
+Deploying to network: sepolia
+Chain ID: 11155111
+V1 Proxy deployed to: 0x7CAbF9CA3a38D1e8282ce68c3f52208d8fbe04A9
+implimentation address: 0xb3dBD6941De4f06Ee3694E88f9F61c17EA942530
+Upgrading logic contract...
+Successfully upgraded
+New implementation (V2) deployed to: 0xbe667d721769d86b07e39F188c3733B6949eDc75
+```
+
+---
 
 This project uses the **UUPS** (Universal Upgradeable Proxy Standard) pattern:
 
