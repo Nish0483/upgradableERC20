@@ -1,6 +1,6 @@
 # Upgradeable ERC20 Token
 
-A full-stack demo of an **upgradeable ERC-20 token** using OpenZeppelin’s UUPS proxy pattern, deployed with **Hardhat**, and interacted with through a **React** frontend and **MetaMask**.
+A full-stack **upgradeable ERC-20 token** using OpenZeppelin’s UUPS proxy pattern, deployed with **Hardhat**, and interacted with through a **React** frontend and **MetaMask**.
 
 
 ## Project structure
@@ -140,57 +140,13 @@ npx hardhat run scripts/deployAndUpgrade.js --network sepolia
    - Calls `upgrades.upgradeProxy` to point the same proxy at `ERC20v2`.  
    - Prints the new **implementation** address (proxy address unchanged).
 
-Example output:
 
-```
-Deploying to network: sepolia
-Chain ID: 11155111
-V1 Proxy deployed to: 0x...
-implimentation address: 0x...
-Upgrading logic contract...
-Successfully upgraded
-New implementation (V2) deployed to: 0x...
-```
 
-### Verify on a block explorer
 
-On [Sepolia Etherscan](https://sepolia.etherscan.io/):
-
-- Look up the **proxy** address for user-facing token interactions.
-- The **implementation** address is the logic contract (changes after each upgrade).
-
-Optional (if you add an Etherscan API key to Hardhat):
-
-```bash
-npx hardhat verify --network sepolia <IMPLEMENTATION_ADDRESS>
-```
-
-### Deploy frontend (production build)
-
-```bash
-cd frontend
-npm run build
-```
-
-Serve the `frontend/build` folder with any static host (Vercel, Netlify, S3 + CloudFront, nginx, etc.). There is no backend server; the app talks to the chain only through the user’s wallet.
-
-Before building for production:
-
-1. Set `CONTRACT_ADDRESS` in `App.js` to your deployed proxy.
-2. Rebuild so the address is baked into the bundle.
-
----
-
-## Upgrade process (brief)
 
 This project uses the **UUPS** (Universal Upgradeable Proxy Standard) pattern:
 
-```mermaid
-flowchart LR
-  User["Users / Frontend"] --> Proxy["Proxy contract\n(fixed address)"]
-  Proxy --> Impl["Implementation\n(ERC20v1 → ERC20v2)"]
-  Owner["Owner"] -->|"upgradeTo()"| Proxy
-```
+
 
 | Concept | Role |
 |--------|------|
@@ -208,15 +164,6 @@ const upgraded = await upgrades.upgradeProxy(proxyAddress, ERC20v2, { kind: "uup
 
 OpenZeppelin’s plugin validates storage layout and updates `.openzeppelin/<network>.json` for future upgrades.
 
-**Upgrading an already-deployed proxy (without redeploying):**
-
-1. Change or extend logic in a new contract (e.g. `ERC20v3`) while preserving storage layout rules.
-2. Run a script that only calls `upgrades.upgradeProxy(existingProxy, NewFactory, { kind: "uups" })`.
-3. Do **not** run the full `deployAndUpgrade.js` on production if you only intend to upgrade — that script deploys a **new** proxy each time.
-
-**Frontend after upgrade:** No change required if you keep using the same proxy address; new ABI functions (e.g. `burn`) appear once the implementation is V2.
-
----
 
 
 ---
