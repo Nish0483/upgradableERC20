@@ -1,0 +1,180 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #000;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.App {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.container {
+  background: white;
+  border-radius: 0;
+  padding: 40px;
+  border: 1px solid #333;
+}
+
+h1 {
+  color: #000;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+}
+
+.subtitle {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.card {
+  background: white;
+  border-radius: 0;
+  padding: 25px;
+  margin-bottom: 20px;
+  border: 1px solid #000;
+}
+
+.card h2 {
+  color: #000;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.wallet-info p {
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.address {
+  font-family: 'Courier New', monospace;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 0;
+  word-break: break-all;
+  font-size: 0.9rem;
+  border: 1px solid #000;
+}
+
+.owner-badge {
+  color: #000;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.connect-btn {
+  width: 100%;
+  padding: 15px;
+  background: #000;
+  color: white;
+  border: 1px solid #000;
+  border-radius: 0;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.connect-btn:hover {
+  background: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #000;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #000;
+  border-radius: 0;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.action-btn {
+  width: 100%;
+  padding: 12px;
+  background: #000;
+  color: white;
+  border: 1px solid #000;
+  border-radius: 0;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.action-btn:hover {
+  background: #333;
+}
+
+.action-btn:disabled {
+  background: #666;
+  cursor: not-allowed;
+}
+
+.burn-btn {
+  background: #000;
+}
+
+.burn-btn:hover {
+  background: #333;
+}
+
+.refresh-btn {
+  width: 100%;
+  padding: 12px;
+  background: #000;
+  color: white;
+  border: 1px solid #000;
+  border-radius: 0;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.refresh-btn:hover {
+  background: #333;
+}
+
+.error {
+  background: white;
+  color: #000;
+  padding: 12px;
+  border-radius: 0;
+  margin-bottom: 20px;
+  border: 1px solid #000;
+}
+
+.v2-feature {
+  border: 1px solid #000;
+  background: white;
+}
+
+.feature-badge {
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}

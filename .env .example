@@ -1,0 +1,5 @@
+#add your private key here
+PRIVATE_KEY=
+
+# RPC URL 
+SEPOLIA_RPC_URL=https://ethereum-sepolia-rpc.publicnode.com
